@@ -36,12 +36,9 @@ class DetailsViewSet(viewsets.ViewSet):
             return Sources.objects.get(id=id)
         except Sources.DoesNotExist:
             raise Http404
-
-    def none_to_empty_str(items):
-        return {k: v if v is not None else "" for k, v in items}
     
     @action(detail=True, methods=["get"])
-    async def retrieve(self, request, id):
+    def retrieve(self, request, id):
         source = self.get_object(id)
         serializer = SourcesSerializer(source)
         post_request = httpx.post(

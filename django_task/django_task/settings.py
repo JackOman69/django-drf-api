@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,13 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7^&p@movba^!h-i4#5hwvf@t3ap2=*^as@zdam1@s=1ob0s*%+'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -124,27 +126,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permissions.IsAuthenticated'
-#     ),
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.TokenAuthentication'
-#     )
-# }
-
-# SWAGGER_SETTINGS = {
-#     "exclude_namespaces": [], # List URL namespaces to ignore
-#     "api_version": '0.1',  # Specify your API's version
-#     "api_path": "/team/get_employees",  # Specify the path to your API not a root level
-#     "enabled_methods": [  # Specify which methods to enable in Swagger UI
-#         'get',
-#         'post',
-#         'put',
-#         'delete'
-#     ],
-#     "api_key": '', # An API key
-#     "is_authenticated": False,  # Set to True to enforce user authentication,
-#     "is_superuser": False,  # Set to True to enforce admin only access
-# }
